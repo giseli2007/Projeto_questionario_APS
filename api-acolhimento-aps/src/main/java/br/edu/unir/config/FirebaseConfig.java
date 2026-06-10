@@ -5,7 +5,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.context.annotation.Configuration;
 import jakarta.annotation.PostConstruct;
+
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 @Configuration
 public class FirebaseConfig {
@@ -14,8 +17,10 @@ public class FirebaseConfig {
     public void init(){
         System.out.println(">>>>> ESTOU TENTANDO LIGAR O FIREBASE <<<<<");
         try {
-            FileInputStream serviceAccount = 
-                new FileInputStream("api-acolhimento-aps/src/main/resources/firebase-key.json");
+            String firebaseKeyJson = System.getenv("FIREBASE_KEY_JSON");
+            InputStream serviceAccount = new ByteArrayInputStream(firebaseKeyJson.getBytes());
+
+            GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
