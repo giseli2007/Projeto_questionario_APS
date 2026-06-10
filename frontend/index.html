@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionário APS — Rondônia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-content">
+      <span class="header-icon" aria-hidden="true">🏥</span>
+      <div>
+        <h1>Avaliação de Atendimento</h1>
+        <p>Unidades Básicas de Saúde · Rondônia</p>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="progress-text" id="progressText">0% preenchido</span>
+    </div>
+  </header>
+
+  <main>
+    <form id="questionarioForm" novalidate>
+
+      <!-- PERFIL -->
+      <section class="card">
+        <div class="card-header">
+          <span class="badge">Perfil</span>
+          <h2>Identificação do Respondente</h2>
+        </div>
+
+        <div class="field">
+          <label for="faixaEtaria">Faixa Etária</label>
+          <select id="faixaEtaria" name="faixaEtaria" required>
+            <option value="">Selecione</option>
+            <option value="0-17">0–17 anos</option>
+            <option value="18-29">18–29 anos</option>
+            <option value="30-49">30–49 anos</option>
+            <option value="50+">50 anos ou mais</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="identidadeGenero">Identidade de Gênero</label>
+          <select id="identidadeGenero" name="identidadeGenero" required>
+            <option value="">Selecione</option>
+            <option value="mulherCis">Mulher cis</option>
+            <option value="homemCis">Homem cis</option>
+            <option value="mulherTrans">Mulher trans</option>
+            <option value="homemTrans">Homem trans</option>
+            <option value="naoBinario">Não binário</option>
+            <option value="prefiroAutodeclarar">Prefiro me autodeclarar</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="divPrefiroAutodeclarar">
+          <label for="autodeclaracaoGenero">Como você se autodeclara?</label>
+          <input type="text" id="autodeclaracaoGenero" name="autodeclaracaoGenero" placeholder="Descreva como preferir">
+        </div>
+
+        <div class="field">
+          <label for="escolaridade">Escolaridade</label>
+          <select id="escolaridade" name="escolaridade" required>
+            <option value="">Selecione</option>
+            <option value="fundamentalIncompleto">Fundamental Incompleto</option>
+            <option value="fundamentalCompleto">Fundamental Completo</option>
+            <option value="medioIncompleto">Médio Incompleto</option>
+            <option value="medioCompleto">Médio Completo</option>
+            <option value="superiorIncompleto">Superior Incompleto</option>
+            <option value="superiorCompleto">Superior Completo</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="possuiDeficiencia">Possui Deficiência?</label>
+          <select id="possuiDeficiencia" name="possuiDeficiencia" required>
+            <option value="">Selecione</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="divDeficienciaEspecifica">
+          <label for="deficienciaEspecifica">Qual deficiência?</label>
+          <input type="text" id="deficienciaEspecifica" name="deficienciaEspecifica" placeholder="Descreva a deficiência">
+        </div>
+
+        <div class="field">
+          <label for="frequenciaUsoUnidade">Com que frequência você utiliza a unidade de saúde?</label>
+          <select id="frequenciaUsoUnidade" name="frequenciaUsoUnidade" required>
+            <option value="">Selecione</option>
+            <option value="primeiraVez">Primeira vez</option>
+            <option value="raramente">Raramente</option>
+            <option value="asVezes">Às vezes</option>
+            <option value="frequentemente">Frequentemente (mensalmente)</option>
+            <option value="muitoFrequentemente">Muito frequentemente (semanalmente)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="tipoAtendimentoRecebido">Tipo de atendimento recebido hoje</label>
+          <select id="tipoAtendimentoRecebido" name="tipoAtendimentoRecebido" required>
+            <option value="">Selecione</option>
+            <option value="consultaMedica">Consulta médica</option>
+            <option value="atendimentoEnfermagem">Atendimento de enfermagem</option>
+            <option value="vacinacao">Vacinação</option>
+            <option value="procedimento">Procedimento (curativo, exame, etc.)</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="divOutroAtendimento">
+          <label for="outroAtendimento">Qual tipo de atendimento?</label>
+          <input type="text" id="outroAtendimento" name="outroAtendimento" placeholder="Descreva o tipo de atendimento">
+        </div>
+      </section>
+
+      <p class="rating-intro">
+        Avalie as afirmações abaixo com base no seu atendimento mais recente nesta Unidade.
+        Escolha entre <strong>1 (muito insatisfeito)</strong> e <strong>5 (muito satisfeito)</strong>:
+      </p>
+
+      <!-- Dimensões renderizadas por JS -->
+      <div id="dimensoesContainer"></div>
+
+      <!-- AVALIAÇÃO QUALITATIVA -->
+      <section class="card">
+        <div class="card-header">
+          <span class="badge">Comentários</span>
+          <h2>Avaliação Qualitativa</h2>
+        </div>
+
+        <div class="field">
+          <label for="consideracaoPositiva">O que você considera positivo no atendimento desta unidade?</label>
+          <textarea id="consideracaoPositiva" name="consideracaoPositiva" rows="3" placeholder="Compartilhe os pontos positivos..." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="poderiaMelhorar">O que poderia melhorar no atendimento desta unidade?</label>
+          <textarea id="poderiaMelhorar" name="poderiaMelhorar" rows="3" placeholder="Compartilhe suas sugestões..." required></textarea>
+        </div>
+      </section>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="btnSubmit">
+          <span>Enviar Avaliação</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </button>
+      </div>
+
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

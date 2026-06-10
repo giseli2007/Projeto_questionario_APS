@@ -1,0 +1,482 @@
+/* =============================================
+   TOKENS
+   ============================================= */
+:root {
+  --green-900: #1B4332;
+  --green-700: #2D6A4F;
+  --green-500: #40916C;
+  --green-300: #74C69D;
+  --green-100: #D8F3DC;
+  --green-50:  #F0FAF3;
+
+  --bg:      #F3F8F5;
+  --surface: #FFFFFF;
+  --text:    #1A2B22;
+  --muted:   #5A7A68;
+  --border:  #CBE4D4;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --shadow-card: 0 2px 12px rgba(27, 67, 50, 0.08);
+  --shadow-lift: 0 6px 24px rgba(27, 67, 50, 0.14);
+
+  --font: 'Inter', system-ui, sans-serif;
+  --transition: 160ms ease;
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--green-700);
+  color: white;
+  padding: 16px 24px 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.header-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.header-content h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: white;
+}
+
+.header-content p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,.7);
+  margin-top: 2px;
+}
+
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,.25);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--green-300);
+  border-radius: 99px;
+  width: 0%;
+  transition: width 400ms ease;
+}
+
+.progress-text {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,.75);
+  white-space: nowrap;
+  min-width: 90px;
+  text-align: right;
+}
+
+/* =============================================
+   MAIN LAYOUT
+   ============================================= */
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+/* =============================================
+   CARDS
+   ============================================= */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid var(--green-100);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 11px;
+  background: var(--green-100);
+  color: var(--green-700);
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.card-header h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-900);
+  letter-spacing: -0.01em;
+}
+
+/* =============================================
+   FIELDS — selects, inputs, textareas
+   ============================================= */
+.field {
+  margin-bottom: 20px;
+}
+
+.field:last-child { margin-bottom: 0; }
+
+.field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.field select,
+.field input[type="text"],
+.field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%235A7A68' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.field select:focus,
+.field input[type="text"]:focus,
+.field textarea:focus {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.15);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.5;
+}
+
+.field.hidden { display: none; }
+
+/* =============================================
+   RATING INTRO
+   ============================================= */
+.rating-intro {
+  font-size: 0.875rem;
+  color: var(--muted);
+  background: var(--green-50);
+  border: 1.5px solid var(--green-100);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+.rating-intro strong {
+  color: var(--green-700);
+}
+
+/* =============================================
+   LIKERT SCALE
+   ============================================= */
+.field--likert {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--green-50);
+}
+
+.field--likert:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.field--likert label {
+  margin-bottom: 12px;
+}
+
+.likert {
+  display: flex;
+  gap: 7px;
+}
+
+.likert-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 4px 8px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  user-select: none;
+  position: relative;
+  min-width: 0;
+}
+
+.likert-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.likert-item:hover {
+  border-color: var(--green-300);
+  background: var(--green-50);
+  transform: translateY(-2px);
+}
+
+/* Selected state — modern browsers */
+.likert-item:has(input:checked) {
+  border-color: var(--green-500);
+  background: var(--green-100);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(64, 145, 108, 0.2);
+}
+
+/* JS fallback class */
+.likert-item.selected {
+  border-color: var(--green-500);
+  background: var(--green-100);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(64, 145, 108, 0.2);
+}
+
+.likert-face {
+  font-size: 1.65rem;
+  line-height: 1;
+  display: block;
+  transition: transform var(--transition);
+}
+
+.likert-item:hover .likert-face,
+.likert-item:has(input:checked) .likert-face,
+.likert-item.selected .likert-face {
+  transform: scale(1.15);
+}
+
+.likert-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.likert-item:has(input:checked) .likert-num,
+.likert-item.selected .likert-num {
+  color: var(--green-700);
+}
+
+.likert-legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  padding: 0 2px;
+}
+
+.likert-legend span {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* =============================================
+   SUBMIT
+   ============================================= */
+.submit-wrap {
+  padding: 0 4px;
+  margin-top: 4px;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 24px;
+  background: var(--green-700);
+  color: white;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.01em;
+}
+
+.btn-submit:hover {
+  background: var(--green-900);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-1px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =============================================
+   VALIDATION ERROR STATE
+   ============================================= */
+.field--error label {
+  color: #C0392B;
+}
+
+.field--error select,
+.field--error input,
+.field--error textarea {
+  border-color: #E74C3C;
+}
+
+.field--error .likert {
+  outline: 2px solid #E74C3C;
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* =============================================
+   SUCCESS / TOAST
+   ============================================= */
+.result-card {
+  text-align: center;
+  padding: 56px 32px;
+}
+
+.result-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.result-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-700);
+  margin-bottom: 12px;
+}
+
+.result-card p {
+  color: var(--muted);
+  max-width: 360px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #C0392B;
+  color: white;
+  padding: 13px 22px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  z-index: 999;
+  animation: slideUp 0.25s ease;
+  white-space: nowrap;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 480px) {
+  .card { padding: 20px 16px; }
+
+  .likert-face { font-size: 1.35rem; }
+  .likert-item { padding: 8px 2px 6px; gap: 4px; }
+  .likert-num  { font-size: 0.62rem; }
+  .likert      { gap: 5px; }
+
+  .header-content h1 { font-size: 0.95rem; }
+  .card-header h2    { font-size: 0.9rem; }
+}
+
+/* =============================================
+   REDUCED MOTION
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .progress-fill { transition: none; }
+}
