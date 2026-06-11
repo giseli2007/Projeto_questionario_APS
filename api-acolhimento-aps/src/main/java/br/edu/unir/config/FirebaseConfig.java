@@ -14,14 +14,22 @@ import java.io.InputStream;
 public class FirebaseConfig {
     
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println(">>>>> ESTOU TENTANDO LIGAR O FIREBASE <<<<<");
+        
         try {
+            InputStream serviceAccount;
             String firebaseKeyJson = System.getenv("FIREBASE_KEY_JSON");
-            InputStream serviceAccount = new ByteArrayInputStream(firebaseKeyJson.getBytes());
 
-            GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
+            if (firebaseKeyJson == null) {
+                // Modo Desenvolvimento: lê o arquivo do PC
+                serviceAccount = getClass().getClassLoader().getResourceAsStream("firebase-key.json");
+            } else {
+                // Modo Nuvem: lê a variável de ambiente que vai configurar no Render
+                serviceAccount = new ByteArrayInputStream(firebaseKeyJson.getBytes());
+            }
 
+            // Agora o serviceAccount está visível aqui fora
             FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
