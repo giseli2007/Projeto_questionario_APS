@@ -198,21 +198,14 @@ function setupSubmit() {
 
     console.log('Payload:', JSON.stringify(dados, null, 2));
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 60000); // 60 segundos
-
-fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(dados),
-  signal: controller.signal,
-}).finally(() => clearTimeout(timeout))
-
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000); // 60 segundos
 
     fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados),
+      signal: controller.signal,
     })
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -228,7 +221,8 @@ fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
           </svg>`;
         showToast('Não foi possível enviar. Verifique sua conexão e tente novamente.');
-      });
+      })
+      .finally(() => clearTimeout(timeout));
   });
 
   // Remove error state on change
