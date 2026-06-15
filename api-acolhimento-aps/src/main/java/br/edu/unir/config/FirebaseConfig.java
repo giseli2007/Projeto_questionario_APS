@@ -23,7 +23,7 @@ public class FirebaseConfig {
 
             if (firebaseKeyJson == null) {
                 // Modo Desenvolvimento: lê o arquivo do PC
-                serviceAccount = getClass().getClassLoader().getResourceAsStream("firebase-key.json");
+                serviceAccount = getClass().getClassLoader().getResourceAsStream("/firebase-key.json");
             } else {
                 // Modo Nuvem: lê a variável de ambiente que vai configurar no Render
                 serviceAccount = new ByteArrayInputStream(firebaseKeyJson.getBytes());
