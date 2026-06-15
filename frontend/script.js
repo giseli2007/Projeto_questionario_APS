@@ -198,7 +198,7 @@ function setupSubmit() {
 
     console.log('Payload:', JSON.stringify(dados, null, 2));
 
-    fetch('http://localhost:8080/api/questionario', {
+    fetch('https://projeto_questionario_aps.onrender.com/api/questionario', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados),
