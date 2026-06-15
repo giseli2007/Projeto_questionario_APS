@@ -198,6 +198,17 @@ function setupSubmit() {
 
     console.log('Payload:', JSON.stringify(dados, null, 2));
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000); // 60 segundos
+
+fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(dados),
+  signal: controller.signal,
+}).finally(() => clearTimeout(timeout))
+
+
     fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -225,16 +236,6 @@ function setupSubmit() {
     e.target.closest('.field')?.classList.remove('field--error');
   });
 }
-
-const controller = new AbortController();
-const timeout = setTimeout(() => controller.abort(), 60000); // 60 segundos
-
-fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(dados),
-  signal: controller.signal,
-}).finally(() => clearTimeout(timeout))
 
 function showSuccess() {
   const form = document.getElementById('questionarioForm');
