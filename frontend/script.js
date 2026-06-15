@@ -226,6 +226,16 @@ function setupSubmit() {
   });
 }
 
+const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 60000); // 60 segundos
+
+fetch('https://projeto-questionario-aps.onrender.com/api/questionario', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(dados),
+  signal: controller.signal,
+}).finally(() => clearTimeout(timeout))
+
 function showSuccess() {
   const form = document.getElementById('questionarioForm');
   form.innerHTML = `
