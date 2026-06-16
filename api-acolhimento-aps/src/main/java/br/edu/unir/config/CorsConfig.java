@@ -5,13 +5,20 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class CorsConfig implements WebMvcConfigurer{
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") //Libera todos os caminhos
-                .allowedOrigins("*") //Libera de qualquer origem
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") //Libera todos os métodos
-                .allowedHeaders("*");
-    }
+public class CorsConfig {
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/api/**")
+                    .allowedOrigins(
+                    "http://localhost:3000",
+                    "https://projeto-questionario-aps.netlify.app" // Libera caminho da URL do frontend hospedado no Netlify
+                    )
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedHeaders("*");
+        }
+    };
+}
     
 }
