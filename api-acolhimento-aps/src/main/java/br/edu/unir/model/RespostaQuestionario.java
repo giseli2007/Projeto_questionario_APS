@@ -27,31 +27,31 @@ public class RespostaQuestionario {
     @NotNull(message = "Informe se possui deficiência")
     private Boolean possuiDeficiencia;
     private String frequenciaUsoUnidade;
-    private String tipoAtendimentoDoDia;
+    private String tipoAtendimentoRecebido;
 
     //Avaliação de antendimento
-    private Integer tempoEsperaAdequado;
-    private Integer notaFacilidadeAtendimento;
-    private Integer atencaoProfissionalSaude;
-    private Integer tempoProblemaSaude;
-    private Integer informacoesClaras;
-    private Integer opiniaoConsideradaAtendimento;
-    private Integer confiancaEquipeSaude;
-    private Integer atendidoProfissionalHistoricoSaude;
-    private Integer meuProblemaResolvido;
-    private Integer encaminhamentoAdequado;
-    private Integer tratadoComRespeito;
-    private Integer profissionaisEmpatia;
-    private Integer meSentiValorizado;
-    private Integer ambienteAcolhedor;
-    private Integer perceboContinuidadeCuidado;
-    private Integer meSintoSeguro;
+    private Integer tempoEspera;
+    private Integer facilAtendimento;
+    private Integer ouvidoComAtencao;
+    private Integer tempoExplicarProblema;
+    private Integer informacoesClarasSaude;
+    private Integer sentiOpiniaoConsiderada;
+    private Integer tenhoConfiancaProfissionais;
+    private Integer conhecemHistoricoSaude;
+    private Integer problemaResolvido;
+    private Integer encaminhadoOutrosServicos;
+    private Integer tratadoRespeito;
+    private Integer empatiaAtendimento;
+    private Integer sentiValorizado;
+    private Integer sentiAcolhido;
+    private Integer continuidadeCuidado;
+    private Integer sintoSeguro;
 
     @NotNull(message = "O campo de satisfação de atendimento é obrigatório")
     private Integer satisfeitoAtendimento;
-    private Integer indicariaUnidadeSaude;
-    private Integer pretendoContinuarUsandoUnidade;
-    private String consideracaoPositivaAtendimento;
-    private String sugestaoMelhoriaAtendimento;
+    private Integer indicariaUnidade;
+    private Integer continuarUsandoServicos;
+    private String consideracaoPositiva;
+    private String poderiaMelhorar;
 
 }
